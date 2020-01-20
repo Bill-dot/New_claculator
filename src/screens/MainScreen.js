@@ -14,11 +14,11 @@ const MainScreen = () => {
         c = parseFloat(b);
         console.log(c)
     }
-    const variable2 = () => {
-        let b = 0
-        b = state;
-        return setVariable(...variable, b);
-    }
+    // const variable2 = () => {
+    //     let b = 0
+    //     b = state;
+    //     return setVariable(...variable, b);
+    // }
     const validate_cal = () => {
 
         a = [];
