@@ -4,24 +4,45 @@ import Tabs_keys from '../components/Tabs_keys'
 
 const MainScreen = () => {
     const [state, setState] = useState([])
-    const [variable, setVariable]=useState([])
+    const [variable, setVariable] = useState([])
 
-    const variable1=()=>{
-        let a = 0
-        a= state;
-        return setVariable(...variable, a);
+    // const variable1=()=>{
+    //     let a = 0
+    //     a= state;
+    //     return setVariable(...variable, a);
+    // }
+    // const variable2=()=>{
+    //     let b = 0
+    //     b= state;
+    //     return setVariable(...variable, b);
+    // }
+    let a
+    const validate_cal = () => {
+
+        a = [];
+        switch (state) {
+            case state.search('+'):
+                return a.push(state.split('+')) && (()=>{setState(a[0] + a[1])})
+            case state.search('-'):
+                return a.push(state.split('-')) && (()=>{setState(a[0] - a[1])})
+            case state.search('/'):
+                return a.push(state.split('/')) && (()=>{setState(a[0] / a[1])})
+            case state.search('X'):
+                return a.push(state.split('X')) && (()=>{setState(a[0] * a[1])})
+            case state.search('%'):
+                return a.push(state.split('%')) && (()=>{setState((a[0] / a[1]))*100})
+        }
+
+
+
+
+
     }
-    const variable2=()=>{
-        let b = 0
-        b= state;
-        return setVariable(...variable, b);
-    }
-    const validate_cal=(state)=>{
-        let a = variable1()
-        let b = variable2()
 
-
-
+    const calculate = (opt) => {
+        return setState(()=>{
+            a[0] 
+        })
     }
 
 
@@ -42,18 +63,18 @@ const MainScreen = () => {
             case 'C':
                 return setState([])
             case '=':
-                return validate_cal(state)
-            case '+':
-                variable1()
-                return setState([...state,key]) 
-            case '-':
-                return 
-            case '/':
-                return 
-            case 'X':
-                return 
+                return validate_cal()
+            // case '+':
+            //     variable1()
+            //     return setState([...state,key]) 
+            // case '-':
+            //     return 
+            // case '/':
+            //     return 
+            // case 'X':
+            //     return 
             default:
-                return setState([...state,key])        
+                return setState([...state, key])
         }
     }
 
