@@ -6,31 +6,47 @@ const MainScreen = () => {
     const [state, setState] = useState([])
     const [variable, setVariable] = useState([])
 
-    // const variable1=()=>{
-    //     let a = 0
-    //     a= state;
-    //     return setVariable(...variable, a);
-    // }
-    // const variable2=()=>{
-    //     let b = 0
-    //     b= state;
-    //     return setVariable(...variable, b);
-    // }
-    let a
+    let a,b,c,x; 
+    const variable1 = () => {
+        a = state;
+        console.log(state.findIndex('2'))
+        b = a.toString()
+        c = parseFloat(b);
+        console.log(c)
+    }
+    const variable2 = () => {
+        let b = 0
+        b = state;
+        return setVariable(...variable, b);
+    }
     const validate_cal = () => {
 
         a = [];
-        switch (state) {
-            case state.search('+'):
-                return a.push(state.split('+')) && (()=>{setState(a[0] + a[1])})
-            case state.search('-'):
-                return a.push(state.split('-')) && (()=>{setState(a[0] - a[1])})
-            case state.search('/'):
-                return a.push(state.split('/')) && (()=>{setState(a[0] / a[1])})
-            case state.search('X'):
-                return a.push(state.split('X')) && (()=>{setState(a[0] * a[1])})
-            case state.search('%'):
-                return a.push(state.split('%')) && (()=>{setState((a[0] / a[1]))*100})
+        a.push(state.split(' '))
+        switch (x) {
+            case '+':
+
+                b=parseFloat(a[1].toString())
+                console.log(b)
+                return  setState(c+b) 
+            case '-':
+                     b=parseFloat(a[1].toString())
+                     console.log(b)
+                    return setState(c-b) 
+            case '/':
+                   b=parseFloat(a[1].toString())
+                    console.log(b)
+                    return setState(c/b)
+            case 'X':
+                    b=parseFloat(a[1].toString())
+                    console.log(b)
+                    return setState(c*b)
+            case '%': 
+                    b=parseFloat(a[1].toString())
+                    console.log(b)
+                    return setState(c/b) * 100 
+            default:
+                return state
         }
 
 
@@ -40,8 +56,8 @@ const MainScreen = () => {
     }
 
     const calculate = (opt) => {
-        return setState(()=>{
-            a[0] 
+        return setState(() => {
+            a[0]
         })
     }
 
@@ -63,16 +79,25 @@ const MainScreen = () => {
             case 'C':
                 return setState([])
             case '=':
+                
                 return validate_cal()
-            // case '+':
-            //     variable1()
-            //     return setState([...state,key]) 
-            // case '-':
-            //     return 
-            // case '/':
-            //     return 
-            // case 'X':
-            //     return 
+            case '+':
+                 x=key
+                variable1()
+                return setState([...state,'', key])
+            case '-':
+                 x=key
+                variable1()
+                return setState([...state,'', key])    
+
+            case '/':
+                 x=key
+                variable1()
+                return setState([...state,'', key])
+            case 'X':
+                 x=key
+                variable1()
+                return setState([...state,'', key])
             default:
                 return setState([...state, key])
         }
