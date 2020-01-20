@@ -1,10 +1,10 @@
 import React from 'react'
 import { View, Text, StyleSheet, TouchableOpacity } from 'react-native'
 
-const Tabs_keys = ({ textToBeDisplayed }) => {
+const Tabs_keys = ({ textToBeDisplayed, Press }) => {
     return (
         <View>
-            <TouchableOpacity onPress={()=>{console.log("pressed")}}>
+            <TouchableOpacity onPress={()=>Press()}>
                 <Text style={styles.text}>{textToBeDisplayed}</Text>
             </TouchableOpacity>
         </View>
