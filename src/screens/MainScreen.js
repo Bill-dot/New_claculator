@@ -3,63 +3,95 @@ import { View, TextInput, StyleSheet, Text } from 'react-native'
 import Tabs_keys from '../components/Tabs_keys'
 
 const MainScreen = () => {
-    const [state, setState] = useState([])
-    const [variable, setVariable] = useState([])
+    const [state, setState] = useState('')
+    const [variable, setVariable] = useState({})
 
-    let a,b,c,x; 
-    const variable1 = () => {
-        a = state;
-        console.log(state.findIndex('2'))
-        b = a.toString()
-        c = parseFloat(b);
-        console.log(c)
-    }
+    let a, b, c, d, x;
+    // const variable1 = () => {
+    //     a = state;
+    //     console.log(state.findIndex('2'))
+    //     b = a.toString()
+    //     c = parseFloat(b);
+    //     console.log(c)
+    // }
     // const variable2 = () => {
     //     let b = 0
     //     b = state;
     //     return setVariable(...variable, b);
     // }
     const validate_cal = () => {
+        console.log("inside validate_cal")
+        a = ''
+        a = state
+       
 
-        a = [];
-        a.push(state.split(' '))
-        switch (x) {
-            case '+':
+        console.log(a)
+        // console.log(a.search('9'))
 
-                b=parseFloat(a[1].toString())
+        
+            if (variable.varName=='+') {
+                b = []
+                b = a.split('+')
                 console.log(b)
-                return  setState(c+b) 
-            case '-':
-                     b=parseFloat(a[1].toString())
-                     console.log(b)
-                    return setState(c-b) 
-            case '/':
-                   b=parseFloat(a[1].toString())
-                    console.log(b)
-                    return setState(c/b)
-            case 'X':
-                    b=parseFloat(a[1].toString())
-                    console.log(b)
-                    return setState(c*b)
-            case '%': 
-                    b=parseFloat(a[1].toString())
-                    console.log(b)
-                    return setState(c/b) * 100 
-            default:
+                // console.log(b[1].slice(-1))
+                c = parseFloat(b[0])
+                d = parseFloat(b[1])
+
+                return setState(c + d)
+            }
+            else if (variable.varName=='-') {
+                b = []
+                b = a.split('-')
+                console.log(b)
+                c = parseFloat(b[0])
+                d = parseFloat(b[1])
+                return setState(c - d)
+            }
+            else if (variable.varName=='X') {
+                b = []
+                b = a.split('X')
+                console.log(b)
+                c = parseFloat(b[0])
+                d = parseFloat(b[1])
+                return setState(c * d)
+            }
+            else if (variable.varName=='/') {
+                b = []
+                b = a.split('/')
+                console.log(b)
+                c = parseFloat(b[0])
+                d = parseFloat(b[1])
+                return setState(c / d)
+            }
+            else if (variable.varName=='/') {
+                b = []
+                b = a.split('%')
+                console.log(b)
+                c = parseFloat(b[0])
+                d = parseFloat(b[1])
+                return setState((c / d) * 100)
+            }
+            else {
                 return state
-        }
+            }
+        // } catch (e) {
+        //     alert(e)
+        //     return state
 
-
-
-
-
+        // }
     }
 
-    const calculate = (opt) => {
-        return setState(() => {
-            a[0]
-        })
-    }
+
+
+
+
+
+
+    // const calculate = (opt) => {
+    //     return setState(() => {
+    //         a[0]
+    //     })
+    // }
 
 
     const identifyPress = (key) => {
@@ -74,32 +106,30 @@ const MainScreen = () => {
 
         switch (key) {
             case '<':
-                state.pop()
-                return setState([...state])
+                return setState(state.slice(0,-1))
             case 'C':
-                return setState([])
+                return setState('')
             case '=':
-                
+
                 return validate_cal()
             case '+':
-                 x=key
-                variable1()
-                return setState([...state,'', key])
+                setVariable({ varName: '+' })
+                return setState(state + key)
             case '-':
-                 x=key
-                variable1()
-                return setState([...state,'', key])    
+                setVariable({ varName: '-' })
+                return setState(state + key)
 
             case '/':
-                 x=key
-                variable1()
-                return setState([...state,'', key])
+                setVariable({ varName: '/' })
+                return setState(state + key)
             case 'X':
-                 x=key
-                variable1()
-                return setState([...state,'', key])
+                setVariable({ varName: 'X' })
+                return setState(state + key)
+            case '%':
+                setVariable({ varName: '%' })
+                return setState(state + key)
             default:
-                return setState([...state, key])
+                return setState(state + key)
         }
     }
 
